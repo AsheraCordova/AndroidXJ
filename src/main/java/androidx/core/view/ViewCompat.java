@@ -127,4 +127,20 @@ public class ViewCompat {
 		return view.isLayoutDirectionResolved();
 	}
 
+	public static void offsetLeftAndRight(View child, int dx) {
+		child.offsetLeftAndRight(dx);
+	}
+
+	public static void offsetTopAndBottom(View child, int dy) {
+		child.offsetTopAndBottom(dy);
+	}
+
+	public static boolean isLaidOut(View view) {
+		return view.isLaidOut();
+	}
+
+	public static boolean isPaddingRelative(View view) {
+		return false;
+	}
+
 }
