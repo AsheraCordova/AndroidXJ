@@ -13,7 +13,11 @@ public class ViewCompat {
 	public static final int LAYOUT_DIRECTION_LTR = View.LAYOUT_DIRECTION_LTR;
 	public static final int IMPORTANT_FOR_ACCESSIBILITY_AUTO = 0;
 	public static final int IMPORTANT_FOR_ACCESSIBILITY_YES = 0;
-
+    public static final int SCROLL_AXIS_NONE = 0;
+    public static final int SCROLL_AXIS_HORIZONTAL = 1 << 0;
+    public static final int SCROLL_AXIS_VERTICAL = 1 << 1;
+    public static final int TYPE_TOUCH = 0;
+    public static final int TYPE_NON_TOUCH = 1;
 	public static int getMeasuredWidthAndState(View view) {
 		return view.getMeasuredWidth();
 	}
@@ -141,6 +145,10 @@ public class ViewCompat {
 
 	public static boolean isPaddingRelative(View view) {
 		return false;
+	}
+
+	public static void stopNestedScroll(View view) {
+		view.stopNestedScroll();
 	}
 
 }
