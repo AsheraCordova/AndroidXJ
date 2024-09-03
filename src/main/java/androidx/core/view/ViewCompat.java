@@ -12,6 +12,7 @@ public class ViewCompat {
 	public static final int MEASURED_SIZE_MASK = 0x00ffffff;
 	public static final int LAYOUT_DIRECTION_LTR = View.LAYOUT_DIRECTION_LTR;
 	public static final int IMPORTANT_FOR_ACCESSIBILITY_AUTO = 0;
+	public static final int IMPORTANT_FOR_ACCESSIBILITY_NO = 0;
 	public static final int IMPORTANT_FOR_ACCESSIBILITY_YES = 0;
     public static final int SCROLL_AXIS_NONE = 0;
     public static final int SCROLL_AXIS_HORIZONTAL = 1 << 0;
