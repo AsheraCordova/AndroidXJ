@@ -96,6 +96,8 @@ public class MenuParser {
 		}
 		
 		if (itemMap.containsKey("@app:showAsAction")) {
+			// load attributes of ActionMenuView do not remove this
+			com.ashera.widget.WidgetFactory.get("androidx.appcompat.widget.ActionMenuView", false);
 			showAsAction = (int) com.ashera.widget.PluginInvoker.convertFrom(com.ashera.widget.PluginInvoker.getConverter("androidx.appcompat.widget.ActionMenuView.showAsAction"), 
 					null, itemMap.get("@app:showAsAction"), fragment);
 		}
