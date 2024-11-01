@@ -67,6 +67,10 @@ public final class MenuItemImpl implements SupportMenuItem {
   public boolean hasSubMenu(){
     return mSubMenu != null;
   }
+  public void setSubMenu(  SubMenuBuilder subMenu){
+    mSubMenu=subMenu;
+    subMenu.setHeaderTitle(getTitle());
+  }
   public MenuItem setIcon(  Drawable icon){
     mIconResId=NO_ICON;
     mIconDrawable=icon;

@@ -118,6 +118,19 @@ public interface Callback {
     }
     startDispatchingItemsChanged();
   }
+  public boolean hasVisibleItems(){
+    if (mOverrideVisibleItems) {
+      return true;
+    }
+    final int size=size();
+    for (int i=0; i < size; i++) {
+      MenuItemImpl item=mItems.get(i);
+      if (item.isVisible()) {
+        return true;
+      }
+    }
+    return false;
+  }
   public MenuItem findItem(  int id){
     final int size=size();
     for (int i=0; i < size; i++) {
@@ -258,6 +271,38 @@ public interface Callback {
     mHeaderTitle=null;
     mHeaderView=null;
     onItemsChanged(false);
+  }
+  private void setHeaderInternal(  final int titleRes,  final CharSequence title,  final int iconRes,  final Drawable icon,  final View view){
+    //final Resources r=getResources();
+    if (view != null) {
+      mHeaderView=view;
+      mHeaderTitle=null;
+      mHeaderIcon=null;
+    }
+ else {
+      if (titleRes > 0) {
+        //mHeaderTitle=r.getText(titleRes);
+      }
+ else       if (title != null) {
+        mHeaderTitle=title;
+      }
+      if (iconRes > 0) {
+        //mHeaderIcon=ContextCompat.getDrawable(getContext(),iconRes);
+      }
+ else       if (icon != null) {
+        mHeaderIcon=icon;
+      }
+      mHeaderView=null;
+    }
+    onItemsChanged(false);
+  }
+  protected MenuBuilder setHeaderTitleInt(  CharSequence title){
+    setHeaderInternal(0,title,0,null,null);
+    return this;
+  }
+  protected MenuBuilder setHeaderTitleInt(  int titleRes){
+    setHeaderInternal(titleRes,null,0,null,null);
+    return this;
   }
   final static int USER_MASK=65535;
   final static int USER_SHIFT=0;

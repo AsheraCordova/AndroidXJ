@@ -130,6 +130,13 @@ public class MenuParser {
 		if (showAsAction != -1) {
 			menuItem.setShowAsAction(showAsAction);
 		}
+		
+		if (itemMap.containsKey("menu")) {
+			Map<String, Object> menuMap = com.ashera.widget.PluginInvoker.getMap(itemMap.get("menu"));
+			SubMenuBuilder subMenu = new SubMenuBuilder(null, menu, (MenuItemImpl)menuItem);
+			((MenuItemImpl)menuItem).setSubMenu(subMenu);
+			parseGroupAndItem(parent, subMenu, fragment, menuMap, 0);
+		}
 	}
 
 	private static void createActionLayout(com.ashera.widget.HasWidgets parent, MenuItem menuItem,
