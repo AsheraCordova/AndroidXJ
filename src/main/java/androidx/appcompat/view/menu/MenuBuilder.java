@@ -3,11 +3,13 @@ import r.android.content.Context;
 import r.android.content.res.Resources;
 import r.android.graphics.drawable.Drawable;
 import r.android.view.MenuItem;
+import r.android.view.SubMenu;
 import r.android.view.View;
+import androidx.core.internal.view.SupportMenu;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
-public class MenuBuilder {
+public class MenuBuilder implements SupportMenu {
   private static final int[] sCategoryToOrder=new int[]{1,4,5,3,2,0};
   private final Context mContext;
   private final Resources mResources;
@@ -86,6 +88,21 @@ public interface Callback {
   }
   public MenuItem add(  int group,  int id,  int categoryOrder,  int title){
     return addInternal(group,id,categoryOrder,mResources.getString(title));
+  }
+  public SubMenu addSubMenu(  CharSequence title){
+    return addSubMenu(0,0,0,title);
+  }
+  public SubMenu addSubMenu(  int titleRes){
+    return addSubMenu(0,0,0,mResources.getString(titleRes));
+  }
+  public SubMenu addSubMenu(  int group,  int id,  int categoryOrder,  CharSequence title){
+    final MenuItemImpl item=(MenuItemImpl)addInternal(group,id,categoryOrder,title);
+    final SubMenuBuilder subMenu=new SubMenuBuilder(mContext,this,item);
+    item.setSubMenu(subMenu);
+    return subMenu;
+  }
+  public SubMenu addSubMenu(  int group,  int id,  int categoryOrder,  int title){
+    return addSubMenu(group,id,categoryOrder,mResources.getString(title));
   }
   public void clearAll(){
     mPreventDispatchingItemsChanged=true;

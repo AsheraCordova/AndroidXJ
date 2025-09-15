@@ -7,13 +7,14 @@ import java.util.Map.Entry;
 
 import com.ashera.widget.IWidget;
 
-import androidx.appcompat.view.menu.MenuBuilder;
 import r.android.graphics.drawable.Drawable;
 import r.android.view.MenuItem;
 import r.android.view.View;
+import r.android.view.Menu;
 
 public class MenuParser {
-	public static void parseMenu(com.ashera.widget.HasWidgets parent, MenuBuilder menu, String json, com.ashera.core.IFragment fragment) {
+	//start - code
+	public static void parseMenu(com.ashera.widget.HasWidgets parent, Menu menu, String json, com.ashera.core.IFragment fragment) {
 		Map<String, Object> jsonMap = com.ashera.widget.PluginInvoker.unmarshal(json, java.util.Map.class);
 		
 		if (jsonMap.containsKey("menu")) {
@@ -22,7 +23,7 @@ public class MenuParser {
 		}
 	}
 
-	private static void parseGroupAndItem(com.ashera.widget.HasWidgets parent, MenuBuilder menu,
+	private static void parseGroupAndItem(com.ashera.widget.HasWidgets parent, Menu menu,
 			com.ashera.core.IFragment fragment, Map<String, Object> parentMap, int groupId) {
 		for (Iterator<Entry<String, Object>> iterator = parentMap.entrySet().iterator(); iterator.hasNext();) {
 			Entry<String, Object> entry = iterator.next();
@@ -47,7 +48,7 @@ public class MenuParser {
 		}
 	}
 
-	private static void parseGroup(com.ashera.widget.HasWidgets parent, MenuBuilder menu,
+	private static void parseGroup(com.ashera.widget.HasWidgets parent, Menu menu,
 			com.ashera.core.IFragment fragment, Object item) {
 		Map<String, Object> itemMap = com.ashera.widget.PluginInvoker.getMap(item);
 		int menugroupId = 0;
@@ -59,7 +60,7 @@ public class MenuParser {
 		parseGroupAndItem(parent, menu, fragment, itemMap, menugroupId);
 	}
 
-	private static void createMenuItemMapOrList(com.ashera.widget.HasWidgets parent, MenuBuilder menu,
+	private static void createMenuItemMapOrList(com.ashera.widget.HasWidgets parent, Menu menu,
 			com.ashera.core.IFragment fragment, Object item, int groupId) {
 		List<Object> itemList = com.ashera.widget.PluginInvoker.getList(item);
 		if (itemList != null) {
@@ -71,7 +72,7 @@ public class MenuParser {
 		}
 	}
 
-	private static void createMenuItem(com.ashera.widget.HasWidgets parent, MenuBuilder menu, com.ashera.core.IFragment fragment, Object payLoad, int groupId) {
+	private static void createMenuItem(com.ashera.widget.HasWidgets parent, Menu menu, com.ashera.core.IFragment fragment, Object payLoad, int groupId) {
 		Map<String, Object> itemMap = com.ashera.widget.PluginInvoker.getMap(payLoad);
 		
 		//"@android:id" : "@+id/menu_main_setting", "@android:icon" : "@drawable/icon", "@app:showAsAction" : "always", "@android:title" : "Setting"
@@ -106,11 +107,8 @@ public class MenuParser {
 		menuItem.setVisible(true);
 		boolean actionViewSpecified = false;
         if (itemMap.containsKey("@app:actionViewClass")) {
-            View actionView = ((View) com.ashera.widget.WidgetFactory.createWidget(
-            		(String) itemMap.get("@app:actionViewClass"), "",  parent, false).asWidget());
-            if (menuItem instanceof androidx.appcompat.view.menu.SupportMenuItem) {
-            	((androidx.appcompat.view.menu.SupportMenuItem)menuItem).setActionView(actionView);
-            }
+            View actionView = getActionView(parent, (String) itemMap.get("@app:actionViewClass"));
+            menuItem.setActionView(actionView);
             actionViewSpecified = true;
         }
         
@@ -132,9 +130,8 @@ public class MenuParser {
 		}
 		
 		if (itemMap.containsKey("menu")) {
-			Map<String, Object> menuMap = com.ashera.widget.PluginInvoker.getMap(itemMap.get("menu"));
-			SubMenuBuilder subMenu = new SubMenuBuilder(null, menu, (MenuItemImpl)menuItem);
-			((MenuItemImpl)menuItem).setSubMenu(subMenu);
+			Map<String, Object> menuMap = com.ashera.widget.PluginInvoker.getMap(itemMap.get("menu"));			
+			Menu subMenu = getSubMenu(menu, menuItem);			
 			parseGroupAndItem(parent, subMenu, fragment, menuMap, 0);
 		}
 	}
@@ -143,8 +140,20 @@ public class MenuParser {
 			String actionLayout) {
 		IWidget template = (IWidget) parent.quickConvert(actionLayout, "template");
 		IWidget widget = template.loadLazyWidgets(parent);
-		if (menuItem instanceof androidx.appcompat.view.menu.SupportMenuItem) {
-			((androidx.appcompat.view.menu.SupportMenuItem)menuItem).setActionView((View) widget.asWidget());
-		}
+		menuItem.setActionView((View) widget.asWidget());
+	}
+	
+	//end - code
+	
+
+	private static View getActionView(com.ashera.widget.HasWidgets parent, String actionViewClass) {
+		View actionView = ((View) com.ashera.widget.WidgetFactory.createWidget(
+				actionViewClass, "",  parent, false).asWidget());
+		return actionView;
+	}
+	private static Menu getSubMenu(Menu menu, MenuItem menuItem) {
+		SubMenuBuilder subMenu = new SubMenuBuilder(null, (MenuBuilder) menu, (MenuItemImpl)menuItem);
+		((MenuItemImpl)menuItem).setSubMenu(subMenu);
+		return subMenu;
 	}
 }

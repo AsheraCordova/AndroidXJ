@@ -62,7 +62,7 @@ public final class ViewParentCompat {
      * @deprecated Use {@link ViewParent#requestSendAccessibilityEvent(View, AccessibilityEvent)}
      * directly.
      */
-    @Deprecated
+    //@Deprecated
     public static boolean requestSendAccessibilityEvent(
             ViewParent parent, View child, AccessibilityEvent event) {
         return false;
