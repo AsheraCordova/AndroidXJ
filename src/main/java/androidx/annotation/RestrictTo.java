@@ -8,7 +8,7 @@ public @interface RestrictTo {
         LIBRARY_GROUP,
         LIBRARY_GROUP_PREFIX,
         /** @deprecated */
-        @Deprecated
+        //@Deprecated
         GROUP_ID,
         TESTS,
         SUBCLASSES;
