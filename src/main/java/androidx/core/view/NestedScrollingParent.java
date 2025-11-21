@@ -1,3 +1,18 @@
+//start - license
+/*
+ * Copyright (c) 2025 Ashera Cordova
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ */
+//end - license
 /*
  * Copyright 2018 The Android Open Source Project
  *
@@ -39,7 +54,7 @@ import r.android.annotation.NonNull;
  * 5.0 Lollipop and newer.</p>
  */
 public interface NestedScrollingParent {
-    /**
+   /**
      * React to a descendant view initiating a nestable scroll operation, claiming the
      * nested scroll operation if appropriate.
      *
@@ -63,7 +78,7 @@ public interface NestedScrollingParent {
      */
     boolean onStartNestedScroll(@NonNull View child, @NonNull View target, /*@ScrollAxis*/ int axes);
 
-    /**
+   /**
      * React to the successful claiming of a nested scroll operation.
      *
      * <p>This method will be called after
@@ -81,7 +96,7 @@ public interface NestedScrollingParent {
      */
     void onNestedScrollAccepted(@NonNull View child, @NonNull View target, /*@ScrollAxis*/ int axes);
 
-    /**
+   /**
      * React to a nested scroll operation ending.
      *
      * <p>Perform cleanup after a nested scrolling operation.
@@ -94,7 +109,7 @@ public interface NestedScrollingParent {
      */
     void onStopNestedScroll(@NonNull View target);
 
-    /**
+   /**
      * React to a nested scroll in progress.
      *
      * <p>This method will be called when the ViewParent's current nested scrolling child view
@@ -118,7 +133,7 @@ public interface NestedScrollingParent {
     void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed,
             int dxUnconsumed, int dyUnconsumed);
 
-    /**
+   /**
      * React to a nested scroll in progress before the target view consumes a portion of the scroll.
      *
      * <p>When working with nested scrolling often the parent view may want an opportunity
@@ -140,7 +155,7 @@ public interface NestedScrollingParent {
      */
     void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed);
 
-    /**
+   /**
      * Request a fling from a nested scroll.
      *
      * <p>This method signifies that a nested scrolling child has detected suitable conditions
@@ -161,7 +176,7 @@ public interface NestedScrollingParent {
      */
     boolean onNestedFling(@NonNull View target, float velocityX, float velocityY, boolean consumed);
 
-    /**
+   /**
      * React to a nested fling before the target view consumes it.
      *
      * <p>This method siginfies that a nested scrolling child has detected a fling with the given
@@ -183,7 +198,7 @@ public interface NestedScrollingParent {
      */
     boolean onNestedPreFling(@NonNull View target, float velocityX, float velocityY);
 
-    /**
+   /**
      * Return the current axes of nested scrolling for this NestedScrollingParent.
      *
      * <p>A NestedScrollingParent returning something other than {@link ViewCompat#SCROLL_AXIS_NONE}

@@ -1,3 +1,18 @@
+//start - license
+/*
+ * Copyright (c) 2025 Ashera Cordova
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ */
+//end - license
 /*
  * Copyright 2018 The Android Open Source Project
  *
@@ -50,14 +65,14 @@ public class NestedScrollingChildHelper {
     private boolean mIsNestedScrollingEnabled;
     private int[] mTempNestedScrollConsumed;
 
-    /**
+   /**
      * Construct a new helper for a given view.
      */
     public NestedScrollingChildHelper(@NonNull View view) {
         mView = view;
     }
 
-    /**
+   /**
      * Enable nested scrolling.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -73,7 +88,7 @@ public class NestedScrollingChildHelper {
         mIsNestedScrollingEnabled = enabled;
     }
 
-    /**
+   /**
      * Check if nested scrolling is enabled for this view.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -86,7 +101,7 @@ public class NestedScrollingChildHelper {
         return mIsNestedScrollingEnabled;
     }
 
-    /**
+   /**
      * Check if this view has a nested scrolling parent view currently receiving events for
      * a nested scroll in progress with the type of touch.
      *
@@ -100,7 +115,7 @@ public class NestedScrollingChildHelper {
         return hasNestedScrollingParent(TYPE_TOUCH);
     }
 
-    /**
+   /**
      * Check if this view has a nested scrolling parent view currently receiving events for
      * a nested scroll in progress with the given type.
      *
@@ -114,7 +129,7 @@ public class NestedScrollingChildHelper {
         return getNestedScrollingParentForType(type) != null;
     }
 
-    /**
+   /**
      * Start a new nested scroll for this view.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -129,7 +144,7 @@ public class NestedScrollingChildHelper {
         return startNestedScroll(axes, TYPE_TOUCH);
     }
 
-    /**
+   /**
      * Start a new nested scroll for this view.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -164,7 +179,7 @@ public class NestedScrollingChildHelper {
         return false;
     }
 
-    /**
+   /**
      * Stop a nested scroll in progress.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -175,7 +190,7 @@ public class NestedScrollingChildHelper {
         stopNestedScroll(TYPE_TOUCH);
     }
 
-    /**
+   /**
      * Stop a nested scroll in progress.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -190,7 +205,7 @@ public class NestedScrollingChildHelper {
         }
     }
 
-    /**
+   /**
      * Dispatch one step of a nested scrolling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -205,7 +220,7 @@ public class NestedScrollingChildHelper {
                 offsetInWindow, TYPE_TOUCH, null);
     }
 
-    /**
+   /**
      * Dispatch one step of a nested scrolling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link NestedScrollingChild2} interface
@@ -219,7 +234,7 @@ public class NestedScrollingChildHelper {
                 offsetInWindow, type, null);
     }
 
-    /**
+   /**
      * Dispatch one step of a nested scrolling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link NestedScrollingChild3} interface
@@ -274,7 +289,7 @@ public class NestedScrollingChildHelper {
         return false;
     }
 
-    /**
+   /**
      * Dispatch one step of a nested pre-scrolling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -288,7 +303,7 @@ public class NestedScrollingChildHelper {
         return dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow, TYPE_TOUCH);
     }
 
-    /**
+   /**
      * Dispatch one step of a nested pre-scrolling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -335,7 +350,7 @@ public class NestedScrollingChildHelper {
         return false;
     }
 
-    /**
+   /**
      * Dispatch a nested fling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -355,7 +370,7 @@ public class NestedScrollingChildHelper {
         return false;
     }
 
-    /**
+   /**
      * Dispatch a nested pre-fling operation to the current nested scrolling parent.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass
@@ -375,7 +390,7 @@ public class NestedScrollingChildHelper {
         return false;
     }
 
-    /**
+   /**
      * View subclasses should always call this method on their
      * <code>NestedScrollingChildHelper</code> when detached from a window.
      *
@@ -387,7 +402,7 @@ public class NestedScrollingChildHelper {
         ViewCompat.stopNestedScroll(mView);
     }
 
-    /**
+   /**
      * Called when a nested scrolling child stops its current nested scroll operation.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.View View} subclass

@@ -1,3 +1,18 @@
+//start - license
+/*
+ * Copyright (c) 2025 Ashera Cordova
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ */
+//end - license
 /*
  * Copyright 2018 The Android Open Source Project
  *
@@ -34,7 +49,7 @@ public class SimpleArrayMap<K, V> {
     private static final boolean DEBUG = false;
     private static final String TAG = "ArrayMap";
 
-    /**
+   /**
      * Attempt to spot concurrent modifications to this data structure.
      *
      * It's best-effort, but any time we can throw something more diagnostic than an
@@ -46,18 +61,18 @@ public class SimpleArrayMap<K, V> {
      */
     private static final boolean CONCURRENT_MODIFICATION_EXCEPTIONS = true;
 
-    /**
+   /**
      * The minimum amount by which the capacity of a ArrayMap will increase.
      * This is tuned to be relatively space-efficient.
      */
     private static final int BASE_SIZE = 4;
 
-    /**
+   /**
      * Maximum number of entries to have in array caches.
      */
     private static final int CACHE_SIZE = 10;
 
-    /**
+   /**
      * Caches of small array objects to avoid spamming garbage.  The cache
      * Object[] variable is a pointer to a linked list of array objects.
      * The first entry in the array is a pointer to the next array in the
@@ -229,7 +244,7 @@ public class SimpleArrayMap<K, V> {
         }
     }
 
-    /**
+   /**
      * Create a new empty ArrayMap.  The default capacity of an array map is 0, and
      * will grow once items are added to it.
      */
@@ -239,7 +254,7 @@ public class SimpleArrayMap<K, V> {
         mSize = 0;
     }
 
-    /**
+   /**
      * Create a new ArrayMap with a given initial capacity.
      */
     @SuppressWarnings("NullAway") // allocArrays initializes mHashes and mArray.
@@ -253,7 +268,7 @@ public class SimpleArrayMap<K, V> {
         mSize = 0;
     }
 
-    /**
+   /**
      * Create a new ArrayMap with the mappings from the given ArrayMap.
      */
     public SimpleArrayMap(SimpleArrayMap<K, V> map) {
@@ -263,7 +278,7 @@ public class SimpleArrayMap<K, V> {
         }
     }
 
-    /**
+   /**
      * Make the array map empty.  All storage is released.
      */
     public void clear() {
@@ -281,7 +296,7 @@ public class SimpleArrayMap<K, V> {
         }
     }
 
-    /**
+   /**
      * Ensure the array map can hold at least <var>minimumCapacity</var>
      * items.
      */
@@ -302,7 +317,7 @@ public class SimpleArrayMap<K, V> {
         }
     }
 
-    /**
+   /**
      * Check whether a key exists in the array.
      *
      * @param key The key to search for.
@@ -312,7 +327,7 @@ public class SimpleArrayMap<K, V> {
         return indexOfKey(key) >= 0;
     }
 
-    /**
+   /**
      * Returns the index of a key in the set.
      *
      * @param key The key to search for.
@@ -341,7 +356,7 @@ public class SimpleArrayMap<K, V> {
         return -1;
     }
 
-    /**
+   /**
      * Check whether a value exists in the array.  This requires a linear search
      * through the entire array.
      *
@@ -352,7 +367,7 @@ public class SimpleArrayMap<K, V> {
         return indexOfValue(value) >= 0;
     }
 
-    /**
+   /**
      * Retrieve a value from the array.
      * @param key The key of the value to retrieve.
      * @return Returns the value associated with the given key,
@@ -369,7 +384,7 @@ public class SimpleArrayMap<K, V> {
         return getOrDefault(key, null);
     }
 
-    /**
+   /**
      * Retrieve a value from the array, or {@code defaultValue} if there is no mapping for the key.
      * @param key The key of the value to retrieve.
      * @param defaultValue The default mapping of the key
@@ -382,7 +397,7 @@ public class SimpleArrayMap<K, V> {
         return index >= 0 ? (V) mArray[(index << 1) + 1] : defaultValue;
     }
 
-    /**
+   /**
      * Return the key at the given index in the array.
      * @param index The desired index, must be between 0 and {@link #size()}-1.
      * @return Returns the key stored at the given index.
@@ -392,7 +407,7 @@ public class SimpleArrayMap<K, V> {
         return (K)mArray[index << 1];
     }
 
-    /**
+   /**
      * Return the value at the given index in the array.
      * @param index The desired index, must be between 0 and {@link #size()}-1.
      * @return Returns the value stored at the given index.
@@ -402,7 +417,7 @@ public class SimpleArrayMap<K, V> {
         return (V)mArray[(index << 1) + 1];
     }
 
-    /**
+   /**
      * Set the value at a given index in the array.
      * @param index The desired index, must be between 0 and {@link #size()}-1.
      * @param value The new value to store at this index.
@@ -416,14 +431,14 @@ public class SimpleArrayMap<K, V> {
         return old;
     }
 
-    /**
+   /**
      * Return true if the array map contains no items.
      */
     public boolean isEmpty() {
         return mSize <= 0;
     }
 
-    /**
+   /**
      * Add a new value to the array map.
      * @param key The key under which to store the value.  <b>Must not be null.</b>  If
      * this key already exists in the array, its value will be replaced.
@@ -495,7 +510,7 @@ public class SimpleArrayMap<K, V> {
         return null;
     }
 
-    /**
+   /**
      * Perform a {@link #put(Object, Object)} of all key/value pairs in <var>array</var>
      * @param array The array whose contents are to be retrieved.
      */
@@ -515,7 +530,7 @@ public class SimpleArrayMap<K, V> {
         }
     }
 
-    /**
+   /**
      * Add a new value to the array map only if the key does not already have a value or it is
      * mapped to {@code null}.
      * @param key The key under which to store the value.
@@ -532,7 +547,7 @@ public class SimpleArrayMap<K, V> {
         return mapValue;
     }
 
-    /**
+   /**
      * Remove an existing key from the array map.
      * @param key The key of the mapping to remove.
      * @return Returns the value that was stored under the key, or null if there
@@ -548,7 +563,7 @@ public class SimpleArrayMap<K, V> {
         return null;
     }
 
-    /**
+   /**
      * Remove an existing key from the array map only if it is currently mapped to {@code value}.
      * @param key The key of the mapping to remove.
      * @param value The value expected to be mapped to the key.
@@ -566,7 +581,7 @@ public class SimpleArrayMap<K, V> {
         return false;
     }
 
-    /**
+   /**
      * Remove the key/value mapping at the given index.
      * @param index The desired index, must be between 0 and {@link #size()}-1.
      * @return Returns the value that was stored at this index.
@@ -628,7 +643,7 @@ public class SimpleArrayMap<K, V> {
         return (V)old;
     }
 
-    /**
+   /**
      * Replace the mapping for {@code key} only if it is already mapped to a value.
      * @param key The key of the mapping to replace.
      * @param value The value to store for the given key.
@@ -643,7 +658,7 @@ public class SimpleArrayMap<K, V> {
         return null;
     }
 
-    /**
+   /**
      * Replace the mapping for {@code key} only if it is already mapped to a value.
      *
      * @param key The key of the mapping to replace.
@@ -663,14 +678,14 @@ public class SimpleArrayMap<K, V> {
         return false;
     }
 
-    /**
+   /**
      * Return the number of items in this array map.
      */
     public int size() {
         return mSize;
     }
 
-    /**
+   /**
      * {@inheritDoc}
      *
      * <p>This implementation returns false if the object is not a Map or
@@ -730,7 +745,7 @@ public class SimpleArrayMap<K, V> {
         return false;
     }
 
-    /**
+   /**
      * {@inheritDoc}
      */
     @Override
@@ -745,7 +760,7 @@ public class SimpleArrayMap<K, V> {
         return result;
     }
 
-    /**
+   /**
      * {@inheritDoc}
      *
      * <p>This implementation composes a string by iterating over its mappings. If

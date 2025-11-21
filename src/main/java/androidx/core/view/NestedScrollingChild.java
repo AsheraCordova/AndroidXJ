@@ -1,3 +1,18 @@
+//start - license
+/*
+ * Copyright (c) 2025 Ashera Cordova
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ */
+//end - license
 /*
  * Copyright 2018 The Android Open Source Project
  *
@@ -41,7 +56,7 @@ import r.android.annotation.Nullable;
  * 5.0 Lollipop and newer.</p>
  */
 public interface NestedScrollingChild {
-    /**
+   /**
      * Enable or disable nested scrolling for this view.
      *
      * <p>If this property is set to true the view will be permitted to initiate nested
@@ -56,7 +71,7 @@ public interface NestedScrollingChild {
      */
     void setNestedScrollingEnabled(boolean enabled);
 
-    /**
+   /**
      * Returns true if nested scrolling is enabled for this view.
      *
      * <p>If nested scrolling is enabled and this View class implementation supports it,
@@ -70,7 +85,7 @@ public interface NestedScrollingChild {
      */
     boolean isNestedScrollingEnabled();
 
-    /**
+   /**
      * Begin a nestable scroll operation along the given axes.
      *
      * <p>A view starting a nested scroll promises to abide by the following contract:</p>
@@ -110,7 +125,7 @@ public interface NestedScrollingChild {
      */
     boolean startNestedScroll(/*@ScrollAxis*/ int axes);
 
-    /**
+   /**
      * Stop a nested scroll in progress.
      *
      * <p>Calling this method when a nested scroll is not currently in progress is harmless.</p>
@@ -119,7 +134,7 @@ public interface NestedScrollingChild {
      */
     void stopNestedScroll();
 
-    /**
+   /**
      * Returns true if this view has a nested scrolling parent.
      *
      * <p>The presence of a nested scrolling parent indicates that this view has initiated
@@ -129,7 +144,7 @@ public interface NestedScrollingChild {
      */
     boolean hasNestedScrollingParent();
 
-    /**
+   /**
      * Dispatch one step of a nested scroll in progress.
      *
      * <p>Implementations of views that support nested scrolling should call this to report
@@ -155,7 +170,7 @@ public interface NestedScrollingChild {
     boolean dispatchNestedScroll(int dxConsumed, int dyConsumed,
             int dxUnconsumed, int dyUnconsumed, @Nullable int[] offsetInWindow);
 
-    /**
+   /**
      * Dispatch one step of a nested scroll in progress before this view consumes any portion of it.
      *
      * <p>Nested pre-scroll events are to nested scroll events what touch intercept is to touch.
@@ -177,7 +192,7 @@ public interface NestedScrollingChild {
     boolean dispatchNestedPreScroll(int dx, int dy, @Nullable int[] consumed,
             @Nullable int[] offsetInWindow);
 
-    /**
+   /**
      * Dispatch a fling to a nested scrolling parent.
      *
      * <p>This method should be used to indicate that a nested scrolling child has detected
@@ -197,7 +212,7 @@ public interface NestedScrollingChild {
      */
     boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed);
 
-    /**
+   /**
      * Dispatch a fling to a nested scrolling parent before it is processed by this view.
      *
      * <p>Nested pre-fling events are to nested fling events what touch intercept is to touch

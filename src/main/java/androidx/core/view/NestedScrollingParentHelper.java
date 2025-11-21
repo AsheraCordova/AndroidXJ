@@ -1,3 +1,18 @@
+//start - license
+/*
+ * Copyright (c) 2025 Ashera Cordova
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ */
+//end - license
 /*
  * Copyright 2018 The Android Open Source Project
  *
@@ -44,13 +59,13 @@ public class NestedScrollingParentHelper {
     private int mNestedScrollAxesTouch;
     private int mNestedScrollAxesNonTouch;
 
-    /**
+   /**
      * Construct a new helper for a given ViewGroup
      */
     public NestedScrollingParentHelper(@NonNull ViewGroup viewGroup) {
     }
 
-    /**
+   /**
      * Called when a nested scrolling operation initiated by a descendant view is accepted
      * by this ViewGroup.
      *
@@ -63,7 +78,7 @@ public class NestedScrollingParentHelper {
         onNestedScrollAccepted(child, target, axes, ViewCompat.TYPE_TOUCH);
     }
 
-    /**
+   /**
      * Called when a nested scrolling operation initiated by a descendant view is accepted
      * by this ViewGroup.
      *
@@ -80,7 +95,7 @@ public class NestedScrollingParentHelper {
         }
     }
 
-    /**
+   /**
      * Return the current axes of nested scrolling for this ViewGroup.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.ViewGroup ViewGroup}
@@ -92,7 +107,7 @@ public class NestedScrollingParentHelper {
         return mNestedScrollAxesTouch | mNestedScrollAxesNonTouch;
     }
 
-    /**
+   /**
      * React to a nested scroll operation ending.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.ViewGroup ViewGroup}
@@ -103,7 +118,7 @@ public class NestedScrollingParentHelper {
         onStopNestedScroll(target, ViewCompat.TYPE_TOUCH);
     }
 
-    /**
+   /**
      * React to a nested scroll operation ending.
      *
      * <p>This is a delegate method. Call it from your {@link r.android.view.ViewGroup ViewGroup}
