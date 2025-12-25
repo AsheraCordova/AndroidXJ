@@ -15,6 +15,7 @@
 //end - license
 package androidx.core.view;
 
+import r.android.content.res.ColorStateList;
 import r.android.view.View;
 import r.android.view.ViewGroup;
 
@@ -165,6 +166,11 @@ public class ViewCompat {
 
 	public static void stopNestedScroll(View view) {
 		view.stopNestedScroll();
+	}
+
+	public static void setBackgroundTintList(View child, ColorStateList backgroundTint) {
+		child.setBackgroundTintList(backgroundTint);
+		
 	}
 
 }
