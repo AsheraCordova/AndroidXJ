@@ -173,4 +173,12 @@ public class ViewCompat {
 		
 	}
 
+	public static boolean canScrollHorizontally(View view, int direction) {
+		return view.canScrollHorizontally(direction);
+	}
+
+	public static boolean canScrollVertically(View view, int direction) {
+		return view.canScrollVertically(direction);
+	}
+
 }
