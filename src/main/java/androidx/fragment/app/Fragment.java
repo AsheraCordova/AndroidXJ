@@ -152,4 +152,7 @@ public class Fragment {
 		}
 	}
 
+	public void onSaveInstanceState(Bundle outState) {
+		
+	}
 }
