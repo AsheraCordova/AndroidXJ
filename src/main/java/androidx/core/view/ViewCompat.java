@@ -181,4 +181,12 @@ public class ViewCompat {
 		return view.canScrollVertically(direction);
 	}
 
+	public static void postOnAnimation(View view, Runnable runnable) {
+		view.postOnAnimation(runnable);
+	}
+
+	public static void postOnAnimationDelayed(View view, Runnable action, long delayMillis) {
+		view.postOnAnimationDelayed(action, delayMillis);
+	}
+
 }
